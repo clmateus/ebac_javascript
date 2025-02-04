@@ -1,0 +1,5 @@
+const nomeBeneficiario = document.getElementById("nome-beneficiario")
+const numeroConta = document.getElementById("numero-conta")
+const valorDeposito = document.getElementById("valor-deposito")
+const descricao = document.getElementById("descricao")
+const depositar = document.getElementById("btnDepositar")
