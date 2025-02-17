@@ -1,21 +1,28 @@
-
-const numeroConta = document.getElementById("numero-conta")
-const valorDeposito = document.getElementById("valor-deposito")
-const descricao = document.getElementById("descricao")
-const depositar = document.getElementById("btnDepositar")
 const form = document.getElementById("form-deposito")
 
-function validaNome(nomeCompleto) {
-    const nomeComoArray = nomeCompleto.split('')
+function validaNome(nomeCompleto){
+    const nomeComoArray = nomeCompleto.split(' ')
     return nomeComoArray.length >= 2
 }
 
-form.addEventListener('submit', function(e){
+form.addEventListener('submit', function (e) {
     e.preventDefault()
-    const nomeBeneficiario = document.getElementById("nome-beneficiario")
-    if(validaNome(nomeBeneficiario.value)){
-        alert('O nome não está completo!')
+
+    const nomeBeneficiario = document.querySelector(`#nome-beneficiario`)
+    const numeroContaBeneficiario = document.querySelector(`#numero-conta`)
+    const valorDeposito = document.querySelector(`#valor-deposito`)
+    const descricao = document.querySelector(`#descricao`)
+    const mensagemSucesso = `Montante de ${valorDeposito.value} depositado para o cliente ${nomeBeneficiario.value}, conta ${numeroContaBeneficiario.value} sucesso!`
+
+    formValido = validaNome(nomeBeneficiario.value)
+    if(formValido){
+        alert(mensagemSucesso)
+        nomeBeneficiario.value = "";
+        numeroContaBeneficiario.value = "";
+        valorDeposito.value = "";
+        descricao.value = "";
     } else {
-        alert('Operação realizada com sucesso!')
+        return alert('ERRO: Digite o nome completo!')
     }
-})
+    
+}) 
