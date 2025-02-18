@@ -5,8 +5,6 @@
     font-family: sans-serif;
 }
 
-body {
-}
 
 .container {
     margin: 80px auto;
@@ -55,4 +53,9 @@ button:hover {
     margin-bottom: 8px;
     font-size: 12px;
     display: none;
+}
+
+input.error {
+    border: 1px solid red;
+    outline: none;
 }

@@ -37,9 +37,11 @@ nomeBeneficiario.addEventListener('keyup', function(e){
     formValido = validaNome(e.target.value)
 
     if(!formValido) {
-        nomeBeneficiario.style.border = '1px solid red'
+        nomeBeneficiario.classList.add('error')
+        // nomeBeneficiario.style.border = '1px solid red'
         containerMensagemErro.style.display = "block"
     } else {
+        nomeBeneficiario.classList.remove('error')
         nomeBeneficiario.style.border = ''
         containerMensagemErro.style.display = 'none'
     }
