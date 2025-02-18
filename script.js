@@ -12,17 +12,22 @@ form.addEventListener('submit', function (e) {
     const numeroContaBeneficiario = document.querySelector(`#numero-conta`)
     const valorDeposito = document.querySelector(`#valor-deposito`)
     const descricao = document.querySelector(`#descricao`)
-    const mensagemSucesso = `Montante de ${valorDeposito.value} depositado para o cliente ${nomeBeneficiario.value}, conta ${numeroContaBeneficiario.value} sucesso!`
+    const mensagemSucesso = `Montante de <b>${valorDeposito.value}</b> depositado para o cliente <b>${nomeBeneficiario.value}</b>, conta: <b>${numeroContaBeneficiario.value}</b> sucesso!`
+    const containerMensagemErro = document.querySelector('.error-message')
 
     formValido = validaNome(nomeBeneficiario.value)
     if(formValido){
-        alert(mensagemSucesso)
+        const containerMensagemSucesso = document.querySelector('.sucess-message')
+        containerMensagemSucesso.innerHTML = mensagemSucesso
+        containerMensagemSucesso.style.display = 'block';
+        containerMensagemErro.style.display = 'none'
         nomeBeneficiario.value = "";
         numeroContaBeneficiario.value = "";
         valorDeposito.value = "";
         descricao.value = "";
     } else {
-        return alert('ERRO: Digite o nome completo!')
+        nomeBeneficiario.style.border = '1px solid red'
+        containerMensagemErro.style.display = 'block'
     }
     
 }) 
