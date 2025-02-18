@@ -1,6 +1,9 @@
 const form = document.getElementById("form-deposito")
+const nomeBeneficiario = document.querySelector(`#nome-beneficiario`)
+const containerMensagemErro = document.querySelector('.error-message')
+let formValido = false;
 
-function validaNome(nomeCompleto){
+function validaNome(nomeCompleto) {
     const nomeComoArray = nomeCompleto.split(' ')
     return nomeComoArray.length >= 2
 }
@@ -8,15 +11,13 @@ function validaNome(nomeCompleto){
 form.addEventListener('submit', function (e) {
     e.preventDefault()
 
-    const nomeBeneficiario = document.querySelector(`#nome-beneficiario`)
     const numeroContaBeneficiario = document.querySelector(`#numero-conta`)
     const valorDeposito = document.querySelector(`#valor-deposito`)
     const descricao = document.querySelector(`#descricao`)
     const mensagemSucesso = `Montante de <b>${valorDeposito.value}</b> depositado para o cliente <b>${nomeBeneficiario.value}</b>, conta: <b>${numeroContaBeneficiario.value}</b> sucesso!`
-    const containerMensagemErro = document.querySelector('.error-message')
+    
 
-    formValido = validaNome(nomeBeneficiario.value)
-    if(formValido){
+    if (formValido) {
         const containerMensagemSucesso = document.querySelector('.sucess-message')
         containerMensagemSucesso.innerHTML = mensagemSucesso
         containerMensagemSucesso.style.display = 'block';
@@ -29,5 +30,17 @@ form.addEventListener('submit', function (e) {
         nomeBeneficiario.style.border = '1px solid red'
         containerMensagemErro.style.display = 'block'
     }
-    
+
 }) 
+
+nomeBeneficiario.addEventListener('keyup', function(e){
+    formValido = validaNome(e.target.value)
+
+    if(!formValido) {
+        nomeBeneficiario.style.border = '1px solid red'
+        containerMensagemErro.style.display = "block"
+    } else {
+        nomeBeneficiario.style.border = ''
+        containerMensagemErro.style.display = 'none'
+    }
+})
